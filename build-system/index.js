@@ -11,8 +11,8 @@ const PROJECT_ID = process.env.PROJECT_ID
 const S3Client = S3Client({
     region: 'ap-south-1',
     credentials:{
-        accessKeyId: 'AKIAYS2NTH4TUZ6PTS4Q',
-        secretAccessKey: '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'
+        accessKeyId: process.env.AWS_ECS_SECRET_ACCESS_ID,
+        secretAccessKey: process.env.AWS_ECS_SECRET_ACCESS_KEY
     }
     
 })
