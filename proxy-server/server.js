@@ -17,6 +17,14 @@ app.use((req,res)=>{
     return proxy.web(req, res,{target:resolveto, changeOrigin:true})
 })
 
+proxy.on('proxyReq',(proxyReq,req, res)=>{
+    const url = req.url;
+    if (url === '/'){
+        proxyReq.path+='index.html'
+        return proxyReq;
+    }
+})
+
 app.listen(PORT, ()=>{console.log(`App has started listening on Port ${PORT}`)})
 
 
