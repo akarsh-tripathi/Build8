@@ -1,0 +1,20 @@
+FROM ubuntu
+
+RUN apt-get update
+RUN apt-get intall -y curl 
+RUN curl -sL https://deb.nodesource.com/setup_20.x | bash -
+RUN apt-get upgrade -y
+RUN apt-get install -y nodejs
+RUN apt-get install git -y
+
+WORKDIR /home/app
+COPY shell.sh shell.sh
+COPY index.js index.js
+COPY package*.json .
+
+RUN npm install
+
+RUN chmod +x shell.sh
+RUN chmod +x index.js
+
+ENTRYPOINT [ "/home/app/shell.sh"]
